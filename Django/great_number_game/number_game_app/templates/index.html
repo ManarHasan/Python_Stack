@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h3>I am thinking of a number between 1 and 100</h3>
+    <p>Take a guess!</p>
+    <form action="/game" method="post">
+        {% csrf_token %}
+        <input type="text" name="user" placeholder="From 1-100">
+        {% if request.session.user == 0 %}
+        <h2 class="wrong">Too Low!</h2>
+        <input type="submit">
+        {% elif request.session.user == 1 %}
+        <h2 class="wrong">Too High!</h2>
+        <input type="submit">
+        {% elif request.session.user == 3 %}
+        <input type="submit">
+        {% elif request.session.user == 4 %}
+        <p>You lose!</p>
+        <a href="/playagain">Play Again!</a>
+        {% endif %}
+    </form>
+    {% if request.session.user == 2 %}
+    <form action="/leaderboard" method="GET">
+        <div class="win">
+            <p>{{request.session.result}} was the correct number!</p>
+            Enter username: <input type="text" name="username">
+            <input type="submit" value="Check leaderboard!">
+            <a href="/playagain">Play Again!</a>
+        </div>
+    </form>
+    {% endif %}
+    <p>Attempts: {{request.session.counter}}</p>
+</body>
+</html>

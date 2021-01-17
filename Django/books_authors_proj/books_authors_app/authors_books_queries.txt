@@ -1,0 +1,116 @@
+In [1]: from books_authors_app.models import *
+
+In [2]: Books.objects.create(title="C Sharp", desc="first book")
+Out[2]: <Books: <Book object: C Sharp, first book (1)>>
+
+In [3]: Books.objects.create(title="Java", desc="second book")
+Out[3]: <Books: <Book object: Java, second book (2)>>
+
+In [4]: Books.objects.create(title="Python", desc="third book")
+Out[4]: <Books: <Book object: Python, third book (3)>>
+
+In [5]: Books.objects.create(title="PHP", desc="fourth book")
+Out[5]: <Books: <Book object: PHP, fourth book (4)>>
+
+In [6]: Books.objects.create(title="Ruby", desc="fifth book")
+Out[6]: <Books: <Book object: Ruby, fifth book (5)>>
+
+In [7]: Authors.objects.create(first_name="Jane", last_name="Austen")
+Out[7]: <Authors: <Book object: Jane, Austen (1)>>
+
+In [8]: Authors.objects.create(first_name="Emily", last_name="Dickinson")
+Out[8]: <Authors: <Book object: Emily, Dickinson (2)>>
+
+In [9]: Authors.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+Out[9]: <Authors: <Book object: Fyodor, Dostoevsky (3)>>
+
+In [10]: Authors.objects.create(first_name="Willilam", last_name="Shakespear")
+Out[10]: <Authors: <Book object: Willilam, Shakespear (4)>>
+
+In [11]: Authors.objects.create(first_name="Lau", last_name="Tzu")
+Out[11]: <Authors: <Book object: Lau, Tzu (5)>>
+
+In [1]: from books_authors_app.models import *
+
+In [2]: C_sharp_book = Books.objects.get(id=1)
+
+In [3]: C_sharp_book.title = "C#"
+
+In [4]: C_sharp_book.save()
+
+In [5]: william_shakespear_author = Authors.objects.get(id=4)
+
+In [6]: william_shakespear_author.first_name = "Bill"
+
+In [7]: first_author_Jane = Authors.objects.get(id=1)
+
+In [8]: second_author_Emily = Authors.object.get(id=2)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-8-b4a1dbe2d8b2> in <module>
+----> 1 second_author_Emily = Authors.object.get(id=2)
+
+AttributeError: type object 'Authors' has no attribute 'object'
+
+In [9]: second_author_Emily = Authors.objects.get(id=2)
+
+In [10]: third_author_Fyodor = Authors.objects.get(id=3)
+
+In [11]: second_book_Java = Books.objects.get(id=2)
+
+In [12]: third_book_Python = Books.objects.get(id=3)
+
+In [13]: fourth_book_PHP = Books.objects.get(id=4)
+
+In [14]: fifth_book_Ruby = Books.objects.get(id=5)
+
+In [15]: first_author_Jane.add(C_sharp_book)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-15-881e1fd72365> in <module>
+----> 1 first_author_Jane.add(C_sharp_book)
+
+AttributeError: 'Authors' object has no attribute 'add'
+
+In [16]: first_author_Jane.books.add(C_sharp_book)
+
+In [17]: first_author_Jane.books.add(second_book_Java)
+
+In [18]: second_author_Emily.books.add(C_sharp_book)
+
+In [19]: second_author_Emily.books.add(second_book_Java)
+
+In [20]: second_author_Emily.books.add(third_book_Python)
+
+In [21]: third_author_Fyodor.books.add(C_sharp_book)
+
+In [22]: third_author_Fyodor.books.add(second_book_Java)
+
+In [23]: third_author_Fyodor.books.add(third_book_Python)
+
+In [24]: third_author_Fyodor.books.add(forth_book_PHP)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-24-af831c3d4bdf> in <module>
+----> 1 third_author_Fyodor.books.add(forth_book_PHP)
+
+NameError: name 'forth_book_PHP' is not defined
+
+In [25]: third_author_Fyodor.books.add(fourth_book_PHP)
+
+In [29]: william_shakespear_author.books.add(C_sharp_book, second_book_Java, third_book_Python, fourth_book_PHP, fifth_book_Ruby)
+
+In [30]: third_book_Python.authors.all()
+Out[30]: <QuerySet [<Authors: <Book object: Emily, Dickinson (2)>>, <Authors: <Book object: Fyodor, Dostoevsky (3)>>, <Authors: <Book object: Willilam, Shakespear (4)>>]>
+
+In [31]: third_book_Python.authors.remove(first_author_Jane)
+
+In [32]: fifth_author_Lau = Authors.objects.get(id=5)
+
+In [33]: second_book_Java.authors.add(fifth_author_Lau)
+
+In [34]: third_author_Fyodor.books.all()
+Out[34]: <QuerySet [<Books: <Book object: C#, first book (1)>>, <Books: <Book object: Java, second book (2)>>, <Books: <Book object: Python, third book (3)>>, <Books: <Book object: PHP, fourth book (4)>>]>
+
+In [35]: fifth_book_Ruby.authors.all()
+Out[35]: <QuerySet [<Authors: <Book object: Willilam, Shakespear (4)>>]>

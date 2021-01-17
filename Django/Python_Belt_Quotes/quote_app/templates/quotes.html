@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Quotes</title>
+</head>
+<body>
+    <main>
+    <aside>
+        <p class="welcome">Welcome {{request.session.first_name}} {{request.session.last_name}}</p>
+        <h1>Quotes:</h1>
+        {% for quote in all_quotes %}
+        <div class="quote">
+            <p>{{quote.author}}: {{quote.quote}}</p>
+            <p>Posted by: <a href="/user/{{quote.owner.id}}">{{quote.owner.first_name}} {{quote.owner.last_name}}</a></p>
+            <p>{{quote.users_who_liked.all.count}} people like this {% if user not in quote.users_who_liked.all %} <a href="/like_quote/{{quote.id}}/{{request.session.user_id}}" class="btn-info">Like!</a> {% endif %} {% if user in quote.users_who_liked.all %} <a href="/dislike_quote/{{quote.id}}/{{request.session.user_id}}" class="btn-danger">Remove Like!</a> {% endif %}</p>
+            {% if quote.owner.id is request.session.user_id %}
+            <a href="/delete_quote/{{quote.id}}" class="btn-danger">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </aside>
+    <div class="mb-3">
+        <a href="/myaccount/{{request.session.user_id}}" class="btn-primary">Edit my account</a>
+        <a href="/logout" class="btn-danger">Logout</a>
+        <h5>Add a Quote!</h5>
+        <form action="/add_quote" method="post">
+            {% csrf_token %}
+            Author: 
+            <div class="form-text">*Required</div>
+            <input type="text" name="author" class="form-control" required>
+            Quote: 
+            <div class="form-text">*Required</div>
+            <textarea name="quote" class="form-control" required></textarea>
+            <input type="submit" value="Add Quote" class="btn-primary">
+        </form>
+        {% if messages %}
+        <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</main>
+</body>
+</html>

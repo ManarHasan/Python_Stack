@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome {{request.session.name}}</h1>
+    <div>
+        <h2>Your Wishlist</h2>
+        <table>
+            <thead>
+                <th>Item</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for wish in all_user_wishes %}
+                <tr>
+                    <td>{{wish.title}}</td>
+                    <td>{{wish.users.first.name}}</td>
+                    <td>{{wish.created_at}}</td>
+                    <td><a href="/remove/{{user.id}}/{{wish.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <aside>
+        <h2>Other User's Wishlist</h2>
+        <table>
+            <thead>
+                <th>Item</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for wish in all_wishes %}
+                {% if user not in wish.users.all %}
+                <tr>
+                    <td>{{wish.title}}</td>
+                    <td>{{wish.users.first.name}}</td>
+                    <td>{{wish.created_at}}</td>
+                    <td><a href="/add/{{user.id}}/{{wish.id}}">Add</a></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/new_wish">Add to Wishlist</a>
+    </aside>
+    <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Ninjas</title>
+</head>
+<body>
+    <form action="/adddojo" method="post">
+    {% csrf_token %}
+    Name: <input type="text" name="name">
+    City: <input type="text" name="city">
+    State: <input type="text" name="state">
+    <input type="submit" value="Add Dojo!">
+    </form>
+    <form action="/addninja" method="post">
+        {% csrf_token %}
+        First name: <input type="text" name="first_name">
+        Last Name: <input type="text" name="last_name">
+        Dojo: <select name="dojos" id="dojos">
+            {% for dojo in Dojos %}
+            <option value="{{dojo.id}}">{{dojo.name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add Ninja">
+        </form>
+    <ul>
+        {% for dojo in Dojos %}
+        <li>{{dojo.name}} {{dojo.ninjas.count}}<a href="/deleteall/{{dojo.id}}">Delete</a></li>
+        <ul>
+        {% for ninjas in dojo.ninjas.all %}
+                <li>{{ninjas.first_name}} {{ninjas.last_name}}</li>
+        {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>

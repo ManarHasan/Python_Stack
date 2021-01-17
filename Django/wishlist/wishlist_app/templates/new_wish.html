@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>New Wish</h1>
+            <form action="/new_wish/{{request.session.user_id}}" method="post" name="add_wish">
+                {% csrf_token %}
+                Title: <input type="text" name="title">
+                Desc: <textarea name="desc"></textarea>
+                <input type="submit" value="Add Wish">
+            </form>
+            <a href="/welcome/{{request.session.user_id}}">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </main>
+</body>
+</html>

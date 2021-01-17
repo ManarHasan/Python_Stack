@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Attempts</th>
+        </thead>
+        <tbody>
+            <tr>
+{% for i in request.session.username %}
+    
+    <td>{{i}}</td>
+    
+{% endfor %}
+</tr>
+<tr>
+{% for i in request.session.attempts %}
+
+    <td>{{i}}</td>
+
+{% endfor %}
+</tr>
+
+    </tbody>
+    </table>
+    <a href="/playagain">Play Again!</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_user.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>{{user.first_name}}'s account</title>
+</head>
+<body>
+    <main>
+        <aside>
+            <h5>{{user.first_name}} {{user.last_name}}'s Quotes</h5>
+            {% for quotes in all_quotes %}
+            <div class="quote">
+                <p>{{quotes.author}}: {{quotes.quote}}</p>
+            </div>
+            {% endfor %}
+        </aside>
+        <div class="mb-3">
+            <a href="/quotes" class="btn-primary">Back</a>
+            <a href="/logout" class="btn-danger">Logout</a>
+        </div>
+    </main>
+</body>
+</html>

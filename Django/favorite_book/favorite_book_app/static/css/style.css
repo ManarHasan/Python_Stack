@@ -1,0 +1,31 @@
+h1 {
+  margin: 10px;
+}
+form {
+  display: inline-block;
+}
+div {
+  display: inline-block;
+  margin: 20px 0 0 50px;
+  width: 600px;
+}
+aside {
+  display: inline-block;
+  margin: 20px 20px 0 0;
+}
+input {
+  margin: 5px 0 !important;
+}
+.btn-danger {
+  text-decoration: none;
+  padding: 5px 10px;
+  height: 40px;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-primary {
+  text-decoration: none;
+  padding: 5px 10px;
+}

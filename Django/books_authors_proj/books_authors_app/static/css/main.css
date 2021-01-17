@@ -1,0 +1,10 @@
+form {
+  display: inline-block;
+  width: 350px;
+  margin-left: 50px;
+}
+main {
+  display: inline-block;
+  width: 415px !important;
+  margin-left: 300px;
+}

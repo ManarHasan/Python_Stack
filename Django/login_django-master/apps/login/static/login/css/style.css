@@ -1,0 +1,29 @@
+*{
+    margin: 0px;
+    border: 0px;
+}
+body {
+    background-color: rgb(245, 252, 209);
+}
+.red{
+    color: red;
+}
+.right{
+    margin-left: 700px;
+}
+.dinb{
+    display: inline-block;
+}
+.quote{
+    border: 1px solid grey;
+    padding: 10px;
+}
+.narrow{
+    width: 400px;
+}
+
+.btn-primary {
+    color:white;
+    background-color: red;
+    border-color: black;
+}

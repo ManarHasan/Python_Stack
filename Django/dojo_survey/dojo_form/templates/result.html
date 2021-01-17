@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+    <h1>Submitted Info: </h1>
+    <p>Name: {{fname}} {{lname}}</p>
+    <p>Location: {{location}}</p>
+    <p>Favorite Language: {{lang}}</p>
+    <p>Comment (Optional): {{comment}}</p>
+    <p>Creditcard info: {{checkbox}}</p>
+    <p>Which yes: 
+        {% if radio_yes == True %}
+            {{radio_yes}}
+        {% endif %}
+        {% if radio_hyes == True %}
+            {{radio_hyes}}
+        {% endif %}
+    </p>
+</body>
+</html>

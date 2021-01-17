@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Signup/Login Page</title>
+</head>
+<body>
+    <main>
+        <aside class="mb-3">
+            <h4>Login:</h4>
+            <form action="/login" method="post">
+            {% csrf_token %}
+            E-mail: <input type="email" name="email" class="form-control" required>
+            Password: <input type="password" name="password" class="form-control" required>
+            <input type="submit" value="Login" class="btn btn-primary">
+            </form>
+        </aside>
+        <div class="mb-3">
+            <h4>Signup:</h4>
+            <form action="/add_user" method="post" name="register">
+                {% csrf_token %}
+                First Name: 
+                <div class="form-text">*Required</div>
+                <input type="text" name="fname" class="form-control" placeholder="John" required>
+                Last Name: 
+                <div class="form-text">*Required</div>
+                <input type="text" name="lname" class="form-control" placeholder="Smith" required>
+                E-mail: 
+                <div class="form-text">*Required</div>
+                <input type="email" name="email" class="form-control" placeholder="email@email.com" required>
+                Password: 
+                <div class="form-text">*Must be at least 8 characters</div>
+                <input type="password" name="password" class="form-control" placeholder="Try to make it strong" required>
+                Confirm Password: <input type="password" name="confirm" class="form-control" required>
+                <input type="submit" value="Register" class="btn btn-primary">
+            </form>
+        </div>
+        {% if messages %}
+        <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </main>
+</body>
+</html>

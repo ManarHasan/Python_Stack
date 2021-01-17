@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <center>
+        <h1>The Current Time is:</h1>
+        <p>{% now "SHORT_DATETIME_FORMAT" %}</p>
+    </center>
+    
+</body>
+</html>

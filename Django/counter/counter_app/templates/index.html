@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <style>
+        a {
+        display: block;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Counter:</h1>
+        <p>{{request.session.counter}} humans.</p>
+        <p>{{request.session.visits}} times visited.</p>
+        <a href="/destroy_session">Destroy all humans!!!</a>
+        <a href="/plus">Add 2...</a>
+        <form action="/user_i" method="post">
+                {% csrf_token %}
+            <input type="text" name="increment">
+            <input type="submit" value="More!">
+        </form>
+    </center>
+</body>
+</html>

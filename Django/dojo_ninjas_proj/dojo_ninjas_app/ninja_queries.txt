@@ -1,0 +1,83 @@
+In [1]: from dojo_ninjas_app.models import *
+
+In [2]: Dojos.objects.create(name="Ramallah Dojo", city="Ramallah", state="PA")
+Out[2]: <Dojos: <Dojo object: Ramallah Dojo, Ramallah, PA (1)>>
+
+In [3]: Dojos.objects.create(name="Jenin Dojo", city="Jenin", state="PA")
+Out[3]: <Dojos: <Dojo object: Jenin Dojo, Jenin, PA (2)>>
+
+In [4]: Dojos.objects.create(name="Bethlehem Dojo", city="Bethlehem", state="PA")
+Out[4]: <Dojos: <Dojo object: Bethlehem Dojo, Bethlehem, PA (3)>>
+
+In [5]: delete_dojo = Dojos.objects.get(id=1)
+
+In [6]: delete_dojo.delete()
+Out[6]: (1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 1})
+
+In [7]: delete_dojo = Dojos.objects.get(id=2)
+
+In [8]: delete_dojo.delete()
+Out[8]: (1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 1})
+
+In [9]: delete_dojo = Dojos.objects.get(id=3)
+
+In [10]: delete_dojo.delete()
+Out[10]: (1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 1})
+
+In [13]: Dojos.objects.create(name="Ramallah Dojo", city="Ramallah", state="PA")
+Out[13]: <Dojos: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>>
+
+In [14]: Dojos.objects.create(name="Jenin Dojo", city="Jenin", state="PA")
+Out[14]: <Dojos: <Dojo object: Jenin Dojo, Jenin, PA (5)>>
+
+In [15]: Dojos.objects.create(name="Bethlehem Dojo", city="Bethlehem", state="PA")
+Out[15]: <Dojos: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>>
+
+In [17]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name="Manar", last_name="Hasan")
+Out[17]: <Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Manar, Hasan (1)>>
+
+In [18]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name="Jihad", last_name="Arouri")
+Out[18]: <Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Jihad, Arouri (2)>>
+
+In [19]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name="Shadi", last_name="Qamhiyya")
+Out[19]: <Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Shadi, Qamhiyya (3)>>
+
+In [20]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name="Ammar", last_name="Amr")
+Out[20]: <Ninjas: <Ninja object: <Dojo object: Jenin Dojo, Jenin, PA (5)>, Ammar, Amr (4)>>
+
+In [21]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name="Mostafa", last_name="Ismail")
+Out[21]: <Ninjas: <Ninja object: <Dojo object: Jenin Dojo, Jenin, PA (5)>, Mostafa, Ismail (5)>>
+
+In [22]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name="Mohammad", last_name="Shalalda")
+Out[22]: <Ninjas: <Ninja object: <Dojo object: Jenin Dojo, Jenin, PA (5)>, Mohammad, Shalalda (6)>>
+
+In [23]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name="Muntaser", last_name="Al-Muntaser")
+Out[23]: <Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Muntaser, Al-Muntaser (7)>>
+
+In [24]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name="Motaz", last_name="Ismail")
+Out[24]: <Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Motaz, Ismail (8)>>
+
+In [25]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name="Ehab", last_name="Shbak")
+Out[25]: <Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Ehab, Shbak (9)>>
+
+In [27]: dojo_ramallah = Dojos.objects.get(id=4)
+
+In [28]: dojo_ramallah.ninjas.all()
+Out[28]: <QuerySet [<Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Manar, Hasan (1)>>, <Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Jihad, Arouri (2)>>, <Ninjas: <Ninja object: <Dojo object: Ramallah Dojo, Ramallah, PA (4)>, Shadi, Qamhiyya (3)>>]>
+
+In [29]: dojo_jenin = Dojos.objects.get(id=5)
+
+In [30]: dojo_bethlehem = Dojos.objects.get(id=6)
+
+In [31]: dojo_bethlehem.ninjas.all()
+Out[31]: <QuerySet [<Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Muntaser, Al-Muntaser (7)>>, <Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Motaz, Ismail (8)>>, <Ninjas: <Ninja object: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>, Ehab, Shbak (9)>>]>
+
+In [32]: last_ninja = Ninjas.objects.last()
+
+In [33]: last_ninja.dojo
+Out[33]: <Dojos: <Dojo object: Bethlehem Dojo, Bethlehem, PA (6)>>
+
+In [2]: from dojo_ninjas_app.models import *
+
+In [3]: Dojos.objects.create(name="Nablus Dojo", city="Nablus", desc="Male only", state="PA")
+Out[3]: <Dojos: <Dojo object: Nablus Dojo, Nablus, PA (7)>>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/addinfo" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-text">First and last name</span>
+        <input type="text" aria-label="First name" class="form-control" id="fname" name="fname">
+        <input type="text" aria-label="Last name" class="form-control" id="lname" name="lname">
+    </div>
+    <label for="location">Location: </label>
+        <select class="form-select" aria-label="Default select example" name="location" id="location">
+            <option value="ramallah">Ramallah</option>
+            <option value="russia">Russia</option>
+            <option value="finland">Finland</option>
+            <option value="hawaii">Hawaii</option>
+        </select>
+    <label for="lang">Favorite Language: </label>
+        <select class="form-select" aria-label="Default select example" name="lang" id="lang">
+            <option value="python">Python</option>
+            <option value="C++">C++</option>
+            <option value="C#">C#</option>
+            <option value="java">Java</option>
+            <option value="javascript">Javascript</option>
+        </select>
+    <div class="input-group">
+        <span class="input-group-text">With textarea</span>
+        <textarea class="form-control" name="comment" aria-label="With textarea"></textarea>
+    </div>
+    <label class="form-check-label" for="flexCheckDefault">
+        Check this box to give me your credit card info:
+    </label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="0000-ASDF-0000-MVAJ" id="flexCheckDefault" name="check">
+    </div>
+    <label class="form-check-label" for="this">
+        Did you check the previous box?
+    </label>
+    <div class="form-check" name="this">
+        <input class="form-check-input" type="radio" value='yes' name="yes" id="yes">Yes
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" value='Hell Yes' name="hyes" id="hyes">Hell yes
+    </div>
+    <input type="submit" class="move">
+    </form>
+</body>
+</html>

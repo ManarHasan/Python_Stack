@@ -1,0 +1,26 @@
+a {
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+main {
+  display: flex;
+  justify-content: center;
+}
+input {
+  margin-top: 7px !important;
+}
+h5 {
+  margin-top: 40px !important;
+}
+div.mb-3 {
+  width: 450px;
+  display: inline-block;
+  margin: 50px;
+}
+div.mb-3 a.btn-danger {
+  margin-left: 230px;
+}
+aside {
+  display: inline-block;
+  margin: 50px 20px;
+}

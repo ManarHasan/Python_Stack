@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+</head>
+<body>
+    <form action="/add_rules" method="post">
+        {% csrf_token %}
+    Number of moves till lose: <input type="number" name="moves">
+    Goal for gold to win: <input type="number" name="gold_win">
+    <input type="submit">
+    </form>
+</body>
+</html>

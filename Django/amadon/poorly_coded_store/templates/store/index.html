@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Amadon</title>
+</head>
+<body>
+    <h1>Amadon Store!</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in all_products %}
+            <tr>
+                <form action="/add" method="post">
+                    {% csrf_token %}
+                    <td>{{product.description}}</td>
+                    <td><input type="hidden" name="price" value="{{product.price}}">{{product.price}}</td>
+                    <td><select name="quantity">
+                        <option value="1">1</option>              
+                        <option value="2">2</option>              
+                        <option value="3">3</option>              
+                    </select></td>
+                    <td><input type="submit" value="Add to Cart"></td>
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/checkout" method="post">
+        {% csrf_token %}
+    Items: {{request.session.quantity}} Price: {{request.session.price}}<input type="submit" value="Buy!">
+    </form>
+    <p><a href="/delete/{{order.id}}">Delete order</a></p>
+</body>
+</html>

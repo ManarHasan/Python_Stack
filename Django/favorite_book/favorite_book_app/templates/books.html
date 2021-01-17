@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+    <div class="mb-3">
+        <h1>Welcome {{request.session.first_name}} {{request.session.last_name}}</h1>
+        <form action="/add_book" method="post" onsubmit="return validateBook()" name="book">
+        {% csrf_token %}
+        Title: <input type="text" name="title" class="form-control">
+        Description: <textarea name="desc" class="form-control"></textarea>
+        <input type="submit" value="Add Book" class="btn-primary">
+    
+    </form>
+    <a href="/logout" class="btn-danger">Logout</a>
+</div>
+    <aside>
+        <h2>All Books:</h2>
+        {% for book in all_books %}
+        <a href="/books/{{book.id}}">{{book.title}}</a>
+        <p>{{book.books_uploaded.first_name}} {{book.books_uploaded.last_name}}</p>
+        <p>{{book.desc}}</p>
+        {% endfor %}
+    </aside>
+</main>
+    <div id='errors'></div>
+    {% if messages %}
+    <ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

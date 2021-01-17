@@ -1,0 +1,25 @@
+a {
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+}
+input {
+  margin-top: 10px !important;
+}
+aside {
+  margin-top: 20px;
+}
+h5 {
+  margin-top: 40px !important;
+}
+div.mb-3 {
+  width: 450px;
+  display: inline-block;
+  margin: 50px;
+}
+div.mb-3 a.btn-danger {
+  margin-left: 230px;
+}

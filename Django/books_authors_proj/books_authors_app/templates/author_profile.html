@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <title>Book Profile</title>
+</head>
+<body>
+    <h1>{{author.first_name}} {{author.last_name}}</h1>
+    <h2>ID: {{author.id}}</h2>
+    <p>Notes: {{author.notes}}</p>
+    <p>Books: </p>
+    <ul>
+        {% for book in author.books.all %}
+        <li>{{book.title}}</li>
+        {% endfor %}
+    </ul>
+    <form action="/add_book_to_author/author{{author.id}}/add_book" method="post">
+        {% csrf_token %}
+    <select name="book" id="book">
+        {% for book in author_books %}
+            <option value="{{book.1}}">{{book.0}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add" class="btn btn-outline-danger">
+    </form>
+    <a href="/" class="btn btn-outline-danger">Go to all Books</a>
+    <a href="/authors" class="btn btn-outline-danger">Go to all Authors</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+a {
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
+p {
+  margin-left: 10px;
+}
+h5 {
+  margin: 20px !important;
+}
+div.mb-3 {
+  width: 450px;
+  display: inline-block;
+  margin: 20px 20px 0 0;
+}
+.btn-primary {
+  margin-left: 320px;
+  display: inline-block;
+}
+.btn-danger {
+  display: inline-block;
+}
+aside {
+  display: inline-block;
+}
+
+.quote {
+  width: 350px;
+  border: 1px solid black;
+  margin: 20px 0 0 20px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <title>Book Profile</title>
+</head>
+<body>
+    <h1>{{book.title}}</h1>
+    <h2>ID: {{book.id}}</h2>
+    <p>Description: {{book.desc}}</p>
+    <p>Authors: </p>
+    <ul>
+        {% for author in book.authors.all %}
+        <li>{{author.first_name}} {{author.last_name}}</li>
+        {% endfor %}
+    </ul>
+    <form action="/add_author_to_book/book{{book.id}}/add_author" method="post">
+        {% csrf_token %}
+    <select name="author" id="author">
+        {% for author in book_authors %}
+        <option value="{{author.2}}">{{author.0}} {{author.1}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add" class="btn btn-warning">
+    </form>
+    <a href="/" class="btn btn-warning">Go to all Books</a>
+    <a href="/authors" class="btn btn-warning">Go to all Authors</a>
+</body>
+</html>
