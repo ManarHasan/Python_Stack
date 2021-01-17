@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/checkers.css')}}">
+    <style>
+        td.one{
+            background-color: {{color1}};
+        }
+        td.two{
+            background-color: {{color2}};
+        }
+    </style>
+</head>
+<body>
+    <table>
+    {% for i in range(0, rows) %}
+    {{open|safe}}
+        {% if i%2 == 0 %}
+            {% for x in range(0, checks) %}
+                {% if x%2 == 0 %}
+                    {{checkbox1|safe}}
+                {% endif %}
+                {% if x%2 != 0 %}
+                    {{checkbox2|safe}}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if i%2 == 1 %}
+        {% for x in range(0, checks) %}
+            {% if x%2 == 0 %}
+                {{checkbox2|safe}}
+            {% endif %}
+            {% if x%2 != 0 %}
+                {{checkbox1|safe}}
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    {{close|safe}}
+    {% endfor %}
+    </table>
+</body>
+</html>

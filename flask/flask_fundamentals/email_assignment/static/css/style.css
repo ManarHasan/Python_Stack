@@ -1,0 +1,13 @@
+div {
+  width: 600px;
+  margin: 100px 0px 0px 500px;
+}
+div label {
+  margin-top: 20px;
+}
+div input {
+  margin-top: 20px;
+}
+h1 {
+  background-color: red;
+}

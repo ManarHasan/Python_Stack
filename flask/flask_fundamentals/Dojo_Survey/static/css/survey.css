@@ -1,0 +1,38 @@
+div.container {
+  display: flex;
+  width: 800px;
+  height: auto;
+  border: 3px solid black;
+  flex-direction: column;
+}
+div.form-group {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.form-control {
+  width: 300px;
+}
+.btn {
+  margin-left: 180px;
+  width: 150px;
+}
+div {
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  margin: 10px;
+}
+div.btn-group-toggle label {
+  height: 70px !important;
+}
+h3 {
+  font-size: 24px;
+}
+
+.comment {
+  justify-content: left;
+}
+.comment p {
+  margin-left: 30px;
+}

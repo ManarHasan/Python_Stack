@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename ='css/bootstrap.css')}}">
+    <style>
+        .edit{
+            border-left: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <p>Fullname: {{allFriends[i].first_name}} {{allFriends[i].last_name}}</p>
+    <p>Email: {{allFriends[i].email}}</p>
+    <p>Created on: {{allFriends[i].created_at}}</p>
+    <p>Last updated on: {{allFriends[i].updated_at}}</p>
+    <a href="/edit" class="edit">Edit</a>
+    <a href="/">Delete</a>
+
+</body>
+</html>

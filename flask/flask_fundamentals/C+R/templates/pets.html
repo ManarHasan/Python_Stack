@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename ='css/bootstrap.css')}}">
+</head>
+<body>
+    
+    <table class="table table-success table-hover">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+        </thead>
+        <tbody>
+            {% for i in range(allPets|length) %}
+            <tr>
+                <td>{{allPets[i].id}}</td>
+                <td>{{allPets[i].name}}</td>
+                <td>{{allPets[i].type}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/addPet" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name">
+        <label for="type">Type: </label>
+        <input type="text" name="type">
+        <input type="submit" value="Submit!">
+    </form>
+
+</body>
+</html>

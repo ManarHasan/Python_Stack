@@ -1,0 +1,22 @@
+table {
+  border-spacing: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  border: 1px solid black;
+}
+td {
+  display: inline-block;
+}
+td.one {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+}
+
+td.two {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}

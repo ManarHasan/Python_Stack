@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename ='css/bootstrap.css')}}">
+</head>
+<body>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(allFriends|length) %}
+            <tr>
+                <td>{{allFriends[i].first_name}}</td>
+                <td>{{allFriends[i].last_name}}</td>
+                <td>{{allFriends[i].email}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/addUser">Add a friend!</a>
+</body>
+</html>

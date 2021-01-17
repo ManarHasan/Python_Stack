@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/group.css')}}">
+</head>
+<body>
+
+    <div>
+        <img src="{{ url_for('static', filename='img/rock.png')}}" width="150px" height="150px">
+        <img src="{{ url_for('static', filename='img/paper.png')}}" width="150px" height="150px">
+        <img src="{{ url_for('static', filename='img/scissors.png')}}" width="150px" height="150px">
+    </div>
+    <div>
+        <label for='game'>Select one:</label>
+        <form action="/game" method="post">
+            <select id="game" name="game">
+                <option value = '2'>Paper</option>
+                <option value = '1'>Rock</option>
+                <option value = '3'>Scissors</option>
+            </select>
+            <input type="submit" value="Go!">
+        </form>
+    </div>
+    <div>
+        <p>You chose: {{user|safe}}</p>
+        <p>the computer chose: {{computer|safe}}</p> 
+        <p>the result is: {{end|safe}}</p>
+    </div>
+    <div>
+    <table>
+        <tr>
+            <td>Wins: </td>
+            <td>{{wins}}</td>
+        </tr>
+        <tr>
+            <td>Losses: </td>
+            <td>{{losses}}</td>
+        </tr>
+        <tr>
+            <td>Ties: </td>
+            <td>{{ties}}</td>
+        </tr>
+    </table>
+    </div>
+
+</body>
+</html>
